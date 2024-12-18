@@ -11,6 +11,7 @@ import PublicKey from './PublicKey';
 import TickInfo from './TickInfo';
 import AccountInfo from './AccountInfo';
 import SendForm from './SendForm';
+import GithubLink from './GithubLink';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ export default App;`}
               Use the <strong>getMetaMaskPublicId</strong> method to get the Qubic public ID of the connected wallet.
               <br />
               <PublicKey className="mt-5" />
+              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/PublicKey.jsx" />
             </Card>
           </div>
 
@@ -61,6 +63,7 @@ export default App;`}
               The utility method <strong>truncatedMiddle</strong> allows to shorten a string in the middle.
               <br />
               <PublicKey truncated={true} className="mt-5" />
+              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/PublicKey.jsx" />
             </Card>
           </div>
 
@@ -72,16 +75,18 @@ export default App;`}
               Using the official <a href="https://rpc.qubic.org">Qubic RPC endpoint</a> to connect to the Qubic Network. <br />
               We use the <strong>getTickInfo</strong> method to get current tick.
               <TickInfo className="mt-5" />
+              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/TickInfo.jsx" />
             </Card>
           </div>
 
           <div className="p-2">
             <pre className='rounded-xl bg-black text-white p-5'>              
               <code>{`const {getBalance} = useQubicConnect()`}</code>
-            </pre>
+            </pre>            
             <Card className="p-5 mt-2">
               We use the <strong>getBalance</strong> method to get current account balance.            
               <AccountInfo className="mt-5" />
+              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/AccountInfo.jsx" />
             </Card>
           </div>
 
@@ -92,6 +97,7 @@ export default App;`}
             <Card className="p-5 mt-2">
               We use the <strong>getSignedTx</strong> method to sign a send TX.
               <SendForm className="mt-5" />
+              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/SendForm.jsx" />
             </Card>
           </div>
 
