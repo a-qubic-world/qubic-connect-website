@@ -4,11 +4,10 @@ import { useQubicConnect, Button, InputMaxChars, InputNumbers, ConfirmTxModal } 
 import { isAddressValid, isAmountValid, truncateMiddle } from "@qubic/react-ui"
 
 const SendForm = ({ className }) => {
-    const {getPaymentTx, getSignedTx, broadcastTx, getMetaMaskPublicId, tickOffset} = useQubicConnect()
+    const {getPaymentTx, getSignedTx, broadcastTx, getMetaMaskPublicId, getTickInfo, tickOffset} = useQubicConnect()
     const [amount, setAmount] = useState(0)
     const [receiver, setReceiver] = useState('')
     const [showConfirmTxModal, setShowConfirmTxModal] = useState(false)
-    const {getTickInfo} = useQubicConnect()
     
     const sendTx = async () => {
         // check if receiver and amount are valid
