@@ -1,7 +1,7 @@
 import { QubicConnectProvider, Header, Card } from '@qubic/react-ui';
 
 // if (import.meta.env.MODE === 'development') {
-  import('@qubic/react-ui/index.css'); // Development
+//  import('@qubic/react-ui/index.css'); // Development
 // } else {
 //   import('@qubic/react-ui/style.css'); // Production
 // }
