@@ -1,11 +1,4 @@
 import { QubicConnectProvider, Header, Card } from '@qubic/react-ui';
-
-// if (import.meta.env.MODE === 'development') {
-//  import('@qubic/react-ui/index.css'); // Development
-// } else {
-//   import('@qubic/react-ui/style.css'); // Production
-// }
-
 import Logo from './assets/qubic-connect.svg';
 import PublicKey from './PublicKey';
 import TickInfo from './TickInfo';
@@ -13,7 +6,7 @@ import AccountInfo from './AccountInfo';
 import SendForm from './SendForm';
 import GithubLink from './GithubLink';
 
-function App() {
+function App(): JSX.Element {
   return (
     <QubicConnectProvider>
       <Header logo={Logo} />

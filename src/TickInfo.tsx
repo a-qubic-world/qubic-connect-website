@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react"
 import clsx from 'clsx'
-import { useQubicConnect, Button } from "@qubic/react-ui"
+import { useQubicConnect, Button, TickInfoType } from "@qubic/react-ui"
 
-const TickInfo = ({className, truncated = false}) => {    
-    const [tickInfo, setTickInfo] = useState(0)
+interface TickInfoProps {
+    className?: string;
+    truncated?: boolean;
+}
+
+const TickInfo: React.FC<TickInfoProps> = ({className}) => {    
+    const [tickInfo, setTickInfo] = useState<TickInfoType>({ tick: 0, epoch: 0 })
     const {getTickInfo} = useQubicConnect()
     
-    const callTickInfo = async () => setTickInfo(await getTickInfo())
+    const callTickInfo = async () => {
+        const info = await getTickInfo()
+        setTickInfo(info)
+    }
 
     useEffect(() => {
         callTickInfo()

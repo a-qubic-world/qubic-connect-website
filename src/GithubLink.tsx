@@ -1,4 +1,8 @@
-const GithubLink = ({link}) => {
+interface GithubLinkProps {
+  link: string;
+}
+
+const GithubLink: React.FC<GithubLinkProps> = ({link}) => {
   return (
     <div className="border-t-2 border-slate-600 flex justify-end mt-10 pt-2">
         <a 

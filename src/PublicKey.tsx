@@ -2,16 +2,24 @@ import { useState, useEffect } from "react"
 import clsx from 'clsx'
 import { truncateMiddle, useQubicConnect } from "@qubic/react-ui"
 
-const PublicKey = ({className, truncated = false}) => {    
-    const [publicKey, setPublicKey] = useState('')
+interface PublicKeyProps {
+    className?: string;
+    truncated?: boolean;
+}
+
+const PublicKey: React.FC<PublicKeyProps> = ({className, truncated = false}) => {    
+    const [publicKey, setPublicKey] = useState<string>('')
     const {connected, getMetaMaskPublicId} = useQubicConnect()
     
     const classes = clsx('bg-white rounded-md p-2 text-xl text-black', className)
 
     useEffect(() => {
-        const fetchPublicKey = async () => setPublicKey(await getMetaMaskPublicId(0))
+        const fetchPublicKey = async () => {
+            const key = await getMetaMaskPublicId(0)
+            setPublicKey(key)
+        }
         fetchPublicKey()
-    }, [])
+    }, [getMetaMaskPublicId])
     
     if (!connected) return (
         <div className={classes}>

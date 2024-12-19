@@ -1,15 +1,30 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import clsx from 'clsx'
 import { useQubicConnect, Button, InputMaxChars, InputNumbers, ConfirmTxModal } from "@qubic/react-ui"
 import { isAddressValid, isAmountValid, truncateMiddle } from "@qubic/react-ui"
 
-const SendForm = ({ className }) => {
+interface SendFormProps {
+    className?: string;
+}
+
+interface TxResult {
+    success: boolean;
+    message?: string;
+    [key: string]: any;
+}
+
+interface ConfirmTxResult {
+    targetTick: number;
+    txResult: TxResult;
+}
+
+const SendForm: React.FC<SendFormProps> = ({ className }) => {
     const {getPaymentTx, getSignedTx, broadcastTx, getMetaMaskPublicId, getTickInfo, tickOffset} = useQubicConnect()
-    const [amount, setAmount] = useState(0)
-    const [receiver, setReceiver] = useState('')
-    const [showConfirmTxModal, setShowConfirmTxModal] = useState(false)
+    const [amount, setAmount] = useState<number>(0)
+    const [receiver, setReceiver] = useState<string>('')
+    const [showConfirmTxModal, setShowConfirmTxModal] = useState<boolean>(false)
     
-    const sendTx = async () => {
+    const sendTx = async (): Promise<void> => {
         // check if receiver and amount are valid
         if (!isAddressValid(receiver) || !isAmountValid(amount)) {
             alert('Please fill in the form correctly.')
@@ -22,14 +37,17 @@ const SendForm = ({ className }) => {
     return (
         <div className={clsx('flex flex-col gap-4', className)}>
             <InputMaxChars 
-                label="Receiver" max={60} placeholder="Public ID of receiver" 
-                onChange={(val) => {
+                label="Receiver"
+                max={60}
+                placeholder="Public ID of receiver" 
+                onChange={(val: string) => {
                     setReceiver(val)
                 }}
             />
             <InputNumbers 
-                label="Amount" placeholder="Amount of QUBIC" 
-                onChange={(val) => {
+                label="Amount"
+                placeholder="Amount of QUBIC" 
+                onChange={(val: number) => {
                     setAmount(val)
                 }}
             />
@@ -42,7 +60,7 @@ const SendForm = ({ className }) => {
                     title: 'Send Qubic',
                     description: `Are you sure you want to send ${amount} Qubic to ${truncateMiddle(receiver, 30)} now?`
                 }}
-                onConfirm={async () => {
+                onConfirm={async (): Promise<ConfirmTxResult> => {
                     // define target tick with default tickOffset of 10
                     const tickInfo = await getTickInfo()
                     const targetTick = tickInfo.tick + tickOffset
