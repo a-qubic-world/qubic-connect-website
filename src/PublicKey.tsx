@@ -15,15 +15,21 @@ const PublicKey: React.FC<PublicKeyProps> = ({className, truncated = false}) => 
 
     useEffect(() => {
         const fetchPublicKey = async () => {
+            if (!connected) return
             const key = await getMetaMaskPublicId(0)
             setPublicKey(key)
         }
         fetchPublicKey()
-    }, [getMetaMaskPublicId])
+    }, [connected, getMetaMaskPublicId])
     
     if (!connected) return (
         <div className={classes}>
             Not Connected
+        </div>
+    )
+    return (
+        <div className={classes}>
+            {truncated ? truncateMiddle(publicKey, 50) : publicKey}
         </div>
     )
 

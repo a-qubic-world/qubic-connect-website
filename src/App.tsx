@@ -5,9 +5,11 @@ import TickInfo from './TickInfo';
 import AccountInfo from './AccountInfo';
 import SendForm from './SendForm';
 import GithubLink from './GithubLink';
+import TransactionsHistory from './TransactionsHistory';
 
 function App(): JSX.Element {
   return (
+    // <QubicConnectProvider config={{snapOrigin: 'local:http://localhost:8080'}}>
     <QubicConnectProvider>
       <Header logo={Logo} />
       
@@ -44,7 +46,7 @@ export default App;`}
               Use the <strong>getMetaMaskPublicId</strong> method to get the Qubic public ID of the connected wallet.
               <br />
               <PublicKey className="mt-5" />
-              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/PublicKey.jsx" />
+              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/PublicKey.tsx" />
             </Card>
           </div>
 
@@ -56,7 +58,7 @@ export default App;`}
               The utility method <strong>truncatedMiddle</strong> allows to shorten a string in the middle.
               <br />
               <PublicKey truncated={true} className="mt-5" />
-              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/PublicKey.jsx" />
+              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/PublicKey.tsx" />
             </Card>
           </div>
 
@@ -68,7 +70,7 @@ export default App;`}
               Using the official <a href="https://rpc.qubic.org">Qubic RPC endpoint</a> to connect to the Qubic Network. <br />
               We use the <strong>getTickInfo</strong> method to get current tick.
               <TickInfo className="mt-5" />
-              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/TickInfo.jsx" />
+              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/TickInfo.tsx" />
             </Card>
           </div>
 
@@ -79,7 +81,7 @@ export default App;`}
             <Card className="p-5 mt-2">
               We use the <strong>getBalance</strong> method to get current account balance.            
               <AccountInfo className="mt-5" />
-              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/AccountInfo.jsx" />
+              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/AccountInfo.tsx" />
             </Card>
           </div>
 
@@ -90,7 +92,21 @@ export default App;`}
             <Card className="p-5 mt-2">
               We use the <strong>getSignedTx</strong> method to sign a send TX.
               <SendForm className="mt-5" />
-              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/SendForm.jsx" />
+              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/SendForm.tsx" />
+            </Card>
+          </div>
+
+          <div className="p-2">
+            <pre className='rounded-xl bg-black text-white p-5'>
+              <code>{`const {getTransactionsHistory} = useQubicConnect()`}</code>
+            </pre>
+            <Card className="p-5 mt-2">
+              We use the <strong>getTransactionsHistory</strong> method to get the transaction history.
+              <TransactionsHistory 
+                publicKey="WNCHXSNKQAOMNGBEWEXSRCPCGTZABFLETETTGTSLEBUIPBVLDGGRXVBBTDPL"
+                className="mt-5" 
+              />
+              <GithubLink link="https://github.com/a-qubic-world/qubic-connect-website/blob/main/src/TransactionsHistory.tsx" />
             </Card>
           </div>
 

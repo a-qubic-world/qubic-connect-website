@@ -10,7 +10,7 @@ const AccountInfo: React.FC<AccountInfoProps> = ({ className }) => {
     const [balance, setBalance] = useState<BalanceInfo>({balance: {balance: 0}})
     const [account, setAccount] = useState<number>(0)
     const [publicId, setPublicId] = useState<string>('')
-    const {getMetaMaskPublicId, getBalance} = useQubicConnect()
+    const {connected, getMetaMaskPublicId, getBalance} = useQubicConnect()
     const [accounts, setAccounts] = useState<DropdownOption[]>([])
     
     const callBalance = async (pId: string) => {
@@ -44,6 +44,7 @@ const AccountInfo: React.FC<AccountInfoProps> = ({ className }) => {
 
     // initial call
     useEffect(() => {
+        if (!connected) return
         buildAccountsList(0, 4)
         updateBalance()
     }, [])
